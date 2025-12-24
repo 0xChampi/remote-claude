@@ -8,33 +8,50 @@ Remote web interface for chatting with Claude Code from anywhere.
 - 📱 Mobile-friendly design
 - 🌐 Works over ngrok tunnel
 - ⚡ Real-time responses
+- 🔒 Runs locally, access remotely
 
-## Setup
+## Quick Start
 
-1. Install dependencies:
 ```bash
-npm install
-# No dependencies needed - uses built-in Node.js modules
+# Clone the repo
+git clone https://github.com/0xChampi/remote-claude.git
+cd remote-claude
+
+# Start the server (uses current directory as working dir)
+./start.sh
+
+# Or specify a working directory
+./start.sh /path/to/your/project
 ```
 
-2. Make sure Claude Code is installed:
-```bash
-claude --version
-```
+Then open http://localhost:3000
 
-3. Start the server:
-```bash
-node remote-claude-proper.js
-```
+## Remote Access Setup
 
-4. Set up ngrok tunnel (for remote access):
+In a separate terminal:
+
 ```bash
 ngrok http 3000
 ```
 
-5. Access the interface:
-- Local: http://localhost:3000
-- Remote: Use the ngrok URL (e.g., https://xxxxx.ngrok-free.app)
+Access from anywhere using the ngrok URL (e.g., https://xxxxx.ngrok-free.app)
+
+## Manual Setup
+
+1. Make sure Claude Code is installed:
+```bash
+claude --version
+```
+
+2. Start the server:
+```bash
+node remote-claude-proper.js
+```
+
+3. Set up ngrok tunnel (optional, for remote access):
+```bash
+ngrok http 3000
+```
 
 ## Configuration
 
@@ -47,21 +64,37 @@ Edit `remote-claude-proper.js` to change:
 - `remote-claude-proper.js` - Main chat server with Claude Code integration
 - `remote-bash-chat.js` - Alternative bash shell interface
 - `remote-claude-chat.js` - Earlier version with different approach
+- `start.sh` - Quick start script
 
-## Usage
+## Usage Examples
 
-Ask Claude anything:
+Ask Claude anything about your code:
 - "list all files in this project"
 - "explain the package.json"
 - "what does this code do?"
-- "create a new feature for X"
+- "create a new feature for user authentication"
+- "refactor this function to be more efficient"
 
 ## Security Note
 
-⚠️ This runs Claude Code with full access to your filesystem at `WORKING_DIR`. Only use over trusted networks or with ngrok authentication enabled.
+⚠️ This runs Claude Code with full access to your filesystem at `WORKING_DIR`. 
+
+**Security recommendations:**
+- Only use over trusted networks
+- Enable ngrok authentication for remote access
+- Don't expose sensitive directories
+- Review all code suggestions before applying
 
 ## Requirements
 
 - Node.js v14+
-- Claude Code CLI installed
+- Claude Code CLI installed ([Get it here](https://claude.com/claude-code))
 - ngrok (optional, for remote access)
+
+## Repository
+
+https://github.com/0xChampi/remote-claude
+
+## License
+
+MIT
